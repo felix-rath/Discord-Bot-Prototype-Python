@@ -6,17 +6,21 @@ class DiceGame(BaseGame):
     PRICE = 1000
 
     DICE = [
-        0, 0, 0, 0, 0,
-        1, 1, 1,
-        2,
-        4
+        0, 0, 0, 0, 0, 0,
+        1, 1, 1, 1,
+        2, 2,
+        5,
+        10,
+        25
     ]
-
+    
     DICE_EMOJI = [
-        ":zero:", ":zero:", ":zero:", ":zero:", ":zero:",
-        ":one:", ":one:", ":one:",
-        ":two:",
-        ":four:"
+        ":zero:", ":zero:", ":zero:", ":zero:", ":zero:", ":zero:",
+        ":one:", ":one:", ":one:", ":one:",
+        ":two:", ":two:",
+        ":five:",
+        ":ten:",
+        ":two: :five:"
     ]
 
     def __init__(self, message):
