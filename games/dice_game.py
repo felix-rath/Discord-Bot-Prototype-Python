@@ -8,12 +8,12 @@ class DiceGame(BaseGame):
     DICE = [0, 1, 2, 5, 10, 25]
 
     WEIGHTS = [
-        52,
-        30,
-        10,
-        4,
-        2,
-        2
+        50,   # 0
+        33,   # 1
+        10,   # 2
+        3,    # 5
+        2,  # 10
+        1   # 25
     ]
     
     DICE_EMOJI = [
