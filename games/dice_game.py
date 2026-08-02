@@ -19,7 +19,7 @@ class DiceGame(BaseGame):
         ":one:", ":one:", ":one:", ":one:",
         ":two:", ":two:",
         ":five:",
-        ":ten:",
+        ":one: :zero:",
         ":two: :five:"
     ]
 

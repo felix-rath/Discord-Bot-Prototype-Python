@@ -1,6 +1,6 @@
 from pathlib import Path
 
-TOKEN = "PRIVATE TOKEN!" # discord bot token
+TOKEN = "PRIVATE TOKEN!!" # discord bot token
 
 SERVER_ID = 548519302555369494 # server id to only run on our server
 
