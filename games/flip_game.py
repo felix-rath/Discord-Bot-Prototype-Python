@@ -12,7 +12,7 @@ class FlipGame(BaseGame):
             user_id = self.message.author.id
             display_name = self.message.author.display_name
 
-            profit = random.randrange(3000)
+            profit = random.randrange(2000)
             new_balance = await money_manager.add_balance(user_id, profit)
             await self.message.channel.send(
                 f"WoW **{display_name}** hat **{abs(profit)}** gewonnen!!\n"

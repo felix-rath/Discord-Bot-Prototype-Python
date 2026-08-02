@@ -4,12 +4,19 @@ from user_data import money_manager
 
 class DiceGame(BaseGame): 
     PRICE = 1000
-    DICE = [1, 1, 1, 1, 1, 2, 2, 2, 4, 8]
+
+    DICE = [
+        0, 0, 0, 0, 0,
+        1, 1, 1,
+        2,
+        4
+    ]
+
     DICE_EMOJI = [
-        ":one:", ":one:", ":one:", ":one:", ":one:", # 50%
-        ":two:", ":two:", ":two:", # 30%
-        ":four:", # 10%
-        ":eight:" # 10%
+        ":zero:", ":zero:", ":zero:", ":zero:", ":zero:",
+        ":one:", ":one:", ":one:",
+        ":two:",
+        ":four:"
     ]
 
     def __init__(self, message):
