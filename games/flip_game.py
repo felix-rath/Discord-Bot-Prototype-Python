@@ -1,6 +1,6 @@
 from games.base_game import BaseGame
 import random
-import user_data.data_saver as data_saver
+from user_data import money_manager
 
 class FlipGame(BaseGame):
 
@@ -12,10 +12,8 @@ class FlipGame(BaseGame):
             user_id = self.message.author.id
             display_name = self.message.author.display_name
 
-            profit = random.randint(-10000, 10000)
-            new_balance = data_saver.load_money(user_id) + profit
-            data_saver.set_money(user_id, new_balance)
+            profit = random.randrange(3000)
+            new_balance = await money_manager.add_balance(user_id, profit)
             await self.message.channel.send(
-                f"WoW **{display_name}** hat **{abs(profit)}** "
-                f"{'gewonnen' if profit > 0 else 'verloren'}!!\n"
+                f"WoW **{display_name}** hat **{abs(profit)}** gewonnen!!\n"
                 f"💰 Neuer Kontostand: **{new_balance}**")
