@@ -9,7 +9,7 @@ class PayCommand(Command):
             return
 
         if len(args) < 2:
-            await message.channel.send("❌ Nutzung: `!pay @User Betrag`")
+            await message.channel.send("❌ Nutzung: `pay @User Betrag`")
             return
 
         try:
