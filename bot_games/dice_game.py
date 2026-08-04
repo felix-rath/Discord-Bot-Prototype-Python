@@ -36,7 +36,10 @@ class DiceGame(BaseGame):
 
 
     def _game_logic(self):
-        dice_index = random.choices(self.DICE, weights=self.WEIGHTS, k=1)[0]
+        dice_index = random.choices(
+            range(len(self.DICE)),
+            weights=self.WEIGHTS,
+            k=1)[0]
 
         dice_emoji = self.DICE_EMOJI[dice_index]
         multiplier = self.DICE[dice_index]
