@@ -1,5 +1,5 @@
 from user_data import json_storage
-from user_data import money_manager
+from user_data import economy_manager
 from datetime import datetime, timedelta
 
 DAILY_REWARD = 2000
@@ -23,7 +23,7 @@ async def claim_daily(user_id):
     if not await can_claim_daily(user_id):
         return None
 
-    balance = await money_manager.add_balance(
+    balance = await economy_manager.add_balance(
         user_id,
         DAILY_REWARD
     )

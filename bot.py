@@ -3,13 +3,14 @@ import tokens
 from website_checker import WebsiteChecker
 import bot_events.on_message as on_message
 import bot_events.on_ready as on_ready
+from bot_commands.command_executor import CommandExecutor
 
 class Bot:
 
-    def __init__(self, website_checker: WebsiteChecker, game_manager):
-        self.client = None
-        self.game_manager = game_manager
+    def __init__(self, website_checker: WebsiteChecker, command_executor: CommandExecutor):
         self.checker = website_checker
+        self.command_executor = command_executor
+        self.client = None
         self.is_queue = False
 
     def start(self):

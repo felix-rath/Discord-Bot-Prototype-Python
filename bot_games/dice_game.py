@@ -1,6 +1,6 @@
-from games.base_game import BaseGame
+from bot_games.base_game import BaseGame
 import random
-from user_data import money_manager
+from user_data import economy_manager
 
 class DiceGame(BaseGame): 
     PRICE = 1000
@@ -8,9 +8,9 @@ class DiceGame(BaseGame):
     DICE = [0, 1, 2, 5, 10, 25]
 
     WEIGHTS = [
-        50,   # 0
-        33,   # 1
-        10,   # 2
+        40,   # 0
+        38,   # 1
+        15,   # 2
         3,    # 5
         2,  # 10
         1   # 25
@@ -24,10 +24,6 @@ class DiceGame(BaseGame):
         ":one:" ":zero:",
         ":two:" ":five:",
     ]
-
-    def __init__(self, message):
-        super().__init__(message)
-
 
     async def start_game(self):
         multiplier, dice_emoji = self._game_logic()
@@ -53,13 +49,11 @@ class DiceGame(BaseGame):
 
 
     async def _payout_profit(self, profit):
-        user_id = self.message.author.id
-        return await money_manager.add_balance(user_id, profit)
+        return await economy_manager.add_balance(self.message.author.id, profit)
 
 
     async def _messager(self, new_balance, profit, dice_emoji):
-        display_name = self.message.author.display_name
         await self.message.channel.send(
-            f"**{display_name}** hat **{dice_emoji}** gewürfelt: **{abs(profit)}** Gewinn!\n"
+            f"**{self.message.author.display_name}** hat **{dice_emoji}** gewürfelt: **{abs(profit)}** Gewinn!\n"
             f"💰 Neuer Kontostand: **{new_balance}**"
         )

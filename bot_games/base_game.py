@@ -1,4 +1,5 @@
 from discord import Message
+from discord.abc import Messageable
 # Base class only for inheritance
 class BaseGame:
 
