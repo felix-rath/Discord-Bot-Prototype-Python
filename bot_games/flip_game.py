@@ -3,12 +3,16 @@ import random
 from user_economy import economy_manager
 
 class FlipGame(BaseGame):
-        
+
     async def start_game(self):
 
-            profit = random.randrange(2000)
-            new_balance = await economy_manager.add_balance(self.message.author.id, profit)
-
+        flip_number = random.randrange(0, 2)
+        if flip_number == 0:
             await self.message.channel.send(
-                f"WoW **{self.message.author.display_name}** hat **{abs(profit)}** gewonnen!!\n"
-                f"💰 Neuer Kontostand: **{new_balance}**")
+                f"🎉 **{self.message.author.display_name}** hat **{abs(self.stake)} Coins** verloren!!\n")
+            return
+
+        new_balance = await economy_manager.add_balance(self.message.author.id, self.stake * 2)
+
+        await self.message.channel.send(
+            f"🎉 **{self.message.author.display_name}** hat **{abs(self.stake)} Coins** gewonnen!!\n")

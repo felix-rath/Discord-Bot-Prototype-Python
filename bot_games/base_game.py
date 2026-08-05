@@ -3,8 +3,9 @@ from discord.abc import Messageable
 # Base class only for inheritance
 class BaseGame:
 
-    def __init__(self, message: Message):
+    def __init__(self, message: Message, stake):
         self.message = message
+        self.stake = stake
 
 
     def start_game(self):

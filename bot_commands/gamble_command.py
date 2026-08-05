@@ -5,7 +5,7 @@ from user_economy import economy_manager
 import random
 
 
-GAMBLE_PRICE = 1000
+STANDARD_STAKE = 1000
 GAMBLE_GAMES = [DiceGame, FlipGame]
 
 
@@ -13,11 +13,19 @@ class GambleCommand(Command):
 
     async def on_command(self, message, command, args):
 
-        if await economy_manager.remove_balance(message.author.id, GAMBLE_PRICE) is None:
+        stake = STANDARD_STAKE
+
+        if len(args) > 0:
+            try:
+                stake = int(args[0])
+            except ValueError:
+                pass
+
+        if await economy_manager.remove_balance(message.author.id, stake) is None:
             await message.channel.send(
-                f"❌ **{message.author.display_name}**, du hast nicht genug Geld! Einsatz: **{GAMBLE_PRICE}** Coins")
+                f"❌ **{message.author.display_name}**, du hast nicht genug Geld! Einsatz: **{stake}** Coins")
             return
 
         r = random.randrange(len(GAMBLE_GAMES))
-        game = GAMBLE_GAMES[r](message)
+        game = GAMBLE_GAMES[r](message, stake)
         await game.start_game()

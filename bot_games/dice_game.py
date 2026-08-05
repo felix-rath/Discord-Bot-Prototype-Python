@@ -3,7 +3,6 @@ import random
 from user_economy import economy_manager
 
 class DiceGame(BaseGame): 
-    PRICE = 1000
 
     DICE = [0, 1, 2, 5, 10, 25]
 
@@ -47,7 +46,7 @@ class DiceGame(BaseGame):
 
     
     def _calculate_profit(self, multiplier):
-        profit = multiplier * self.PRICE
+        profit = multiplier * self.stake
         return profit
 
 
@@ -57,6 +56,4 @@ class DiceGame(BaseGame):
 
     async def _messager(self, new_balance, profit, dice_emoji):
         await self.message.channel.send(
-            f"**{self.message.author.display_name}** hat **{dice_emoji}** gewürfelt: **{abs(profit)}** Gewinn!\n"
-            f"💰 Neuer Kontostand: **{new_balance}**"
-        )
+            f"🎲 **{self.message.author.display_name}** hat **{dice_emoji}** gewürfelt: **{abs(profit)} Coins** Gewinn!\n")
