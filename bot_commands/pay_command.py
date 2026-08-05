@@ -1,5 +1,5 @@
 from bot_commands.base_command import Command
-import user_data.economy_manager as economy_manager
+import user_economy.economy_manager as economy_manager
 
 class PayCommand(Command):
 
@@ -34,5 +34,4 @@ class PayCommand(Command):
 
         await message.channel.send(
             f"💸 **{sender.display_name}** hat **{receiver.display_name}** "
-            f"**{amount} Coins** gesendet!"
-        )
+            f"**{amount} Coins** gesendet!")

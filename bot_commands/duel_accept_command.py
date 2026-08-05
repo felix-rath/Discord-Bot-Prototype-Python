@@ -1,5 +1,5 @@
 from bot_commands.base_command import Command
-import user_data.economy_manager as economy_manager
+import user_economy as economy_manager
 import random
 
 class DuelAccept(Command):
@@ -12,6 +12,7 @@ class DuelAccept(Command):
         opponent = message.author
         duel = self.duel_manager.get_duel_by_player(opponent.id)
 
+        # Check for pending duel
         if duel is None:
             await message.channel.send(f"❌ **{opponent.display_name}**, du hast keine offene **Duell-Anfrage**.")
             return
@@ -44,10 +45,14 @@ class DuelAccept(Command):
             self.duel_manager.remove_duel(duel)
             return
 
+        # Handle money
         await economy_manager.remove_balance(challenger.id, amount)
         await economy_manager.remove_balance(opponent.id, amount)
         await economy_manager.add_balance(winner.id, amount*2)
-        
+
+        # Delete message to avoid chat spam
+        await duel.message.delete()
+
         await message.channel.send(
             f"🎲 **Duell Ergebnis**\n\n"
             f"⚔️ **{challenger.display_name}**: **{challenger_roll}**\n"

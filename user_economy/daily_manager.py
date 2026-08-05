@@ -1,5 +1,5 @@
 from user_data import json_storage
-from user_data import economy_manager
+from user_economy import economy_manager
 from datetime import datetime, timedelta
 
 DAILY_REWARD = 2000

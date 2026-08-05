@@ -1,6 +1,6 @@
 from bot_games.base_game import BaseGame
 import random
-from user_data import economy_manager
+from user_economy import economy_manager
 
 class FlipGame(BaseGame):
         

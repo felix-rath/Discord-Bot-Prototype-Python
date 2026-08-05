@@ -1,6 +1,6 @@
 from bot_commands.base_command import Command
 from bot_duels.duel import Duel
-from user_data import economy_manager
+from user_economy import economy_manager
 
 class DuelCommand(Command):
 
@@ -40,7 +40,7 @@ class DuelCommand(Command):
             await message.channel.send(f"❌ **{receiver.display_name}** hat nicht genug **Coins** für dieses Duell!")
             return
         
-        duel = Duel(sender, receiver, amount)
+        duel = Duel(message, sender, receiver, amount)
         self.duel_manager.add_duel(duel)
 
         await message.channel.send(
