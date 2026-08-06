@@ -31,7 +31,7 @@ class DiceGame(BaseGame):
 
         new_balance = await self._payout_profit(profit)
 
-        await self._messager(new_balance, profit, dice_emoji)
+        await self._messager(profit, dice_emoji)
 
 
     def _game_logic(self):
@@ -54,6 +54,6 @@ class DiceGame(BaseGame):
         return await economy_manager.add_balance(self.message.author.id, profit)
 
 
-    async def _messager(self, new_balance, profit, dice_emoji):
+    async def _messager(self, profit, dice_emoji):
         await self.message.channel.send(
             f"🎲 **{self.message.author.display_name}** hat **{dice_emoji}** gewürfelt: **{abs(profit)} Coins** Gewinn!\n")

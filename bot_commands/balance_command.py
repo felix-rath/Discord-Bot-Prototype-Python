@@ -1,5 +1,5 @@
 from bot_commands.base_command import Command
-import user_economy.economy_manager as economy_manager
+from user_economy import economy_manager
 
 class BalanceCommand(Command):
 

@@ -1,9 +1,8 @@
 from user_data import json_storage
 from user_economy import economy_manager
-from datetime import datetime, timedelta
+from datetime import datetime
 
 DAILY_REWARD = 2000
-DAILY_COOLDOWN = timedelta(hours=24)
 
 LAST_DAILY_KEY = "last_daily"
 
@@ -16,7 +15,7 @@ async def can_claim_daily(user_id):
 
     last_daily = datetime.fromisoformat(last_daily)
 
-    return datetime.now() - last_daily >= DAILY_COOLDOWN
+    return datetime.now().date() > last_daily.date()
 
 
 async def claim_daily(user_id):

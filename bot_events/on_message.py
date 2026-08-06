@@ -8,13 +8,8 @@ def setup(bot):
         if message.author == bot.client.user:
             return
 
-        content = message.content.lower()
-        user_id = message.author.id
-        display_name = message.author.display_name
-
         await check_daily_reward(message)
         await bot.command_executor.use_commands(message)
-
 
     async def check_daily_reward(message):
         if await daily_manager.claim_daily(message.author.id) is not None:

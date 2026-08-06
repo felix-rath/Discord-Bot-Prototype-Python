@@ -12,7 +12,9 @@ class FlipGame(BaseGame):
                 f"🎉 **{self.message.author.display_name}** hat **{abs(self.stake)} Coins** verloren!!\n")
             return
 
-        new_balance = await economy_manager.add_balance(self.message.author.id, self.stake * 2)
+        profit = self.stake * 2
+        
+        await economy_manager.add_balance(self.message.author.id, profit)
 
         await self.message.channel.send(
-            f"🎉 **{self.message.author.display_name}** hat **{abs(self.stake)} Coins** gewonnen!!\n")
+            f"🎉 **{self.message.author.display_name}** hat **{abs(profit)} Coins** gewonnen!!\n")

@@ -6,6 +6,7 @@ import random
 
 
 STANDARD_STAKE = 1000
+MAX_STAKE = 10000
 GAMBLE_GAMES = [DiceGame, FlipGame]
 
 
@@ -20,6 +21,11 @@ class GambleCommand(Command):
                 stake = int(args[0])
             except ValueError:
                 pass
+
+        if stake > MAX_STAKE:
+            await message.channel.send(
+                f"❌ Der maximale Einsatz beträgt **{MAX_STAKE} Coins**.")
+            return
 
         if await economy_manager.remove_balance(message.author.id, stake) is None:
             await message.channel.send(

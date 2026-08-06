@@ -1,5 +1,5 @@
 from bot_commands.base_command import Command
-import user_economy as economy_manager
+from user_economy import economy_manager
 import random
 
 class DuelAccept(Command):
